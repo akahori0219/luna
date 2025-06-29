@@ -12,13 +12,19 @@ const links = [
     icon: '/x-logo.png',
     sub: 'フォローはこちら'
   },
+  {
+    label: 'Instagram',
+    url: 'https://instagram.com', // 仮のURL
+    icon: '/Instagram-logo.png',
+    sub: 'フォローはこちら'
+  },
 ];
 ---
 <section class="w-full bg-white dark:bg-black py-8 md:py-20" id="links">
   <div class="max-w-4xl mx-auto px-2 md:px-4">
     <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-800 dark:text-white text-center uppercase mb-12 md:mb-16">LINKS</h2>
     <p class="text-sm md:text-base lg:text-lg text-gray-600 dark:text-gray-300 text-center mb-6 md:mb-8">各SNSでLunaの最新情報をお届けしています</p>
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-10">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10">
       {links.map(link => (
         <a href={link.url} class="bg-white/10 dark:bg-white/10 backdrop-blur-md rounded-2xl p-6 md:p-10 flex flex-col items-center gap-4 border border-white/20 shadow-2xl hover:shadow-3xl transition-all duration-200 group hover:scale-105 hover:border-primary/60" target="_blank" rel="noopener noreferrer">
           <img src={link.icon} alt={`${link.label} logo`} class="w-16 h-16 object-contain group-hover:scale-110 transition-transform" />
