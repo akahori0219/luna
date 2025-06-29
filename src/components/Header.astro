@@ -1,0 +1,57 @@
+---
+// ナビゲーションリンクは仮のものを使用
+const navLinks = [
+  { href: '#profile', label: 'PROFILE' },
+  { href: '#works', label: 'WORKS' },
+  { href: '#blog', label: 'BLOG' },
+  { href: '#links', label: 'LINKS' },
+  { href: '#contact', label: 'CONTACT' },
+];
+---
+<header class="w-full bg-black/70 backdrop-blur border-b border-gray-800 sticky top-0 z-50">
+  <div class="max-w-5xl mx-auto flex items-center justify-between px-4 py-3">
+    <!-- ロゴ -->
+    <a href="#" class="flex items-center gap-2">
+      <!-- TODO: 本番ロゴ画像に差し替えてください -->
+      <img src="/luna-logo.png" alt="Logo" class="w-10 h-10 rounded-full shadow" />
+      <span class="text-lg font-bold tracking-tight text-white">Luna</span>
+    </a>
+    <!-- ナビゲーション -->
+    <nav class="hidden md:flex gap-8">
+      {navLinks.map(link => (
+        <a href={link.href} class="text-white hover:text-primary font-medium transition-colors duration-150 text-sm">{link.label}</a>
+      ))}
+    </nav>
+    <!-- モバイルメニュー（ハンバーガーアイコンのみ、機能は未実装） -->
+    <div class="flex items-center gap-4">
+      <!-- ダークモード切替ボタン -->
+      <button id="darkmode-toggle" class="p-2 rounded-full border border-gray-600 bg-black/40 hover:bg-gray-800 transition" aria-label="ダークモード切替">
+        <svg id="darkmode-icon" class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z" />
+        </svg>
+      </button>
+      <!-- 多言語ドロップダウン -->
+      <select class="bg-black/40 border border-gray-600 text-white text-sm rounded px-2 py-1 focus:outline-none focus:ring-2 focus:ring-primary">
+        <option value="ja">日本語</option>
+        <option value="en">English</option>
+      </select>
+    </div>
+  </div>
+</header>
+
+<script>
+  // ダークモード切替
+  const btn = document.getElementById('darkmode-toggle');
+  const icon = document.getElementById('darkmode-icon');
+  btn?.addEventListener('click', () => {
+    const html = document.documentElement;
+    html.classList.toggle('dark');
+    // アイコン切替
+    if (!icon) return;
+    if (html.classList.contains('dark')) {
+      icon.innerHTML = `<path d="M12 3v1m0 16v1m8.66-13.66l-.71.71M4.05 19.95l-.71.71M21 12h-1M4 12H3m16.66 5.66l-.71-.71M4.05 4.05l-.71-.71" /><circle cx="12" cy="12" r="5" />`;
+    } else {
+      icon.innerHTML = `<path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z" />`;
+    }
+  });
+</script>

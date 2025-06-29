@@ -1,0 +1,17 @@
+---
+// レイアウトはスロットで子要素を受け取る
+import '../styles/global.css';
+import '@fontsource/noto-serif-jp';
+import '@fontsource/noto-sans-jp';
+---
+<!DOCTYPE html>
+<html lang="ja" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Luna</title>
+  </head>
+  <body class="bg-dark text-white">
+    <slot />
+  </body>
+</html>

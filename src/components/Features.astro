@@ -1,0 +1,31 @@
+---
+import FeatureCard from './FeatureCard.astro';
+
+const features = [
+  {
+    icon: `<svg class='w-8 h-8 text-blue-500' fill='none' stroke='currentColor' stroke-width='2' viewBox='0 0 24 24'><path d='M12 4v16m8-8H4'/></svg>`,
+    title: 'シンプルな操作',
+    description: '直感的なUIで誰でもすぐに使いこなせます。',
+  },
+  {
+    icon: `<svg class='w-8 h-8 text-blue-500' fill='none' stroke='currentColor' stroke-width='2' viewBox='0 0 24 24'><circle cx='12' cy='12' r='10'/><path d='M8 12l2 2 4-4'/></svg>`,
+    title: '高いセキュリティ',
+    description: 'あなたのデータを安全に守ります。',
+  },
+  {
+    icon: `<svg class='w-8 h-8 text-blue-500' fill='none' stroke='currentColor' stroke-width='2' viewBox='0 0 24 24'><path d='M3 12h18M3 6h18M3 18h18'/></svg>`,
+    title: '多機能',
+    description: '日常からビジネスまで幅広くサポート。',
+  },
+];
+---
+<section id="features" class="w-full bg-white py-8 md:py-16">
+  <div class="max-w-5xl mx-auto px-2 md:px-4">
+    <h2 class="text-lg md:text-xl lg:text-2xl font-bold text-gray-900 text-center mb-12 md:mb-16">特徴</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
+      {features.map(feature => (
+        <FeatureCard {...feature} glassmorphism={true} />
+      ))}
+    </div>
+  </div>
+</section>

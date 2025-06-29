@@ -1,0 +1,20 @@
+---
+interface Props {
+  icon?: string; // SVG文字列 or プレースホルダー
+  title: string;
+  description: string;
+  glassmorphism?: boolean;
+}
+const { icon, title, description, glassmorphism = false } = Astro.props;
+---
+<div class={`rounded-xl p-6 flex flex-col items-center text-center transition-transform hover:-translate-y-1 duration-150 border ${glassmorphism ? 'bg-white/10 backdrop-blur-md border-white/20 shadow-2xl hover:shadow-3xl' : 'bg-white shadow-md hover:shadow-lg'}`}>
+  <div class="w-14 h-14 mb-4 flex items-center justify-center bg-primary/10 rounded-full group-hover:bg-primary/30 transition">
+    {icon ? (
+      <span set:html={icon} />
+    ) : (
+      <svg class="w-8 h-8 text-blue-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /><path d="M8 12l2 2 4-4" /></svg>
+    )}
+  </div>
+  <h3 class="text-base font-semibold text-gray-900 mb-2 group-hover:text-primary transition">{title}</h3>
+  <p class="text-gray-600 text-xs">{description}</p>
+</div>

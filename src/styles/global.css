@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body {
+  @apply font-serif;
+}
+
+body {
+  font-size: 0.92rem;
+}
