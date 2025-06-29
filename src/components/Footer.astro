@@ -1,13 +1,21 @@
 ---
 const year = new Date().getFullYear();
+
+const socialLinks = [
+  { href: "https://youtube.com", imgSrc: "/youtube-logo.png", alt: "YouTube" },
+  { href: "https://x.com", imgSrc: "/x-logo.png", alt: "X" },
+  { href: "https://instagram.com", imgSrc: "/Instagram-logo.png", alt: "Instagram" },
+];
 ---
 <footer class="w-full bg-black border-t border-gray-800 pt-3 pb-2">
   <div class="max-w-5xl mx-auto px-4 flex flex-col items-center gap-6">
     <!-- SNSアイコン -->
-    <div class="flex gap-8 mb-2">
-      <a href="#" class="text-gray-500 hover:text-primary transition"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /></svg></a>
-      <a href="#" class="text-gray-500 hover:text-primary transition"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="4" /></svg></a>
-      <a href="#" class="text-gray-500 hover:text-primary transition"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm0 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16z"/></svg></a>
+    <div class="flex gap-6 mb-2">
+      {socialLinks.map(link => (
+        <a href={link.href} target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:opacity-80 transition-opacity">
+          <img src={link.imgSrc} alt={link.alt} class="w-6 h-6 object-contain" />
+        </a>
+      ))}
     </div>
     <div class="text-gray-500 text-[10px] text-center tracking-wide">&copy; {year} Luna - AI Vtuber. All rights reserved.</div>
   </div>
