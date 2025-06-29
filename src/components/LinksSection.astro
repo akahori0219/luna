@@ -26,10 +26,10 @@ const links = [
     <p class="text-sm md:text-base lg:text-lg text-gray-600 dark:text-gray-300 text-center mb-6 md:mb-8">各SNSでLunaの最新情報をお届けしています</p>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10">
       {links.map(link => (
-        <a href={link.url} class="bg-white/10 dark:bg-white/10 backdrop-blur-md rounded-2xl p-6 md:p-10 flex flex-col items-center gap-4 border border-white/20 shadow-2xl hover:shadow-3xl transition-all duration-200 group hover:scale-105 hover:border-primary/60" target="_blank" rel="noopener noreferrer">
+        <a href={link.url} class="bg-gray-950 backdrop-blur-md rounded-2xl p-6 md:p-10 flex flex-col items-center gap-4 border border-gray-700 shadow-2xl hover:shadow-3xl transition-all duration-200 group hover:scale-105 hover:border-primary/60" target="_blank" rel="noopener noreferrer">
           <img src={link.icon} alt={`${link.label} logo`} class="w-16 h-16 object-contain group-hover:scale-110 transition-transform" />
-          <span class="text-gray-800 dark:text-white font-bold text-lg text-center">{link.label}</span>
-          <span class="text-gray-500 dark:text-gray-300 text-xs text-center">{link.sub}</span>
+          <span class="text-white font-bold text-lg text-center">{link.label}</span>
+          <span class="text-gray-300 text-xs text-center">{link.sub}</span>
         </a>
       ))}
     </div>

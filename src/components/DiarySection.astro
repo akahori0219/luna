@@ -35,13 +35,13 @@ const activeTab = 'すべて';
     <!-- カード -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10 mb-6 md:mb-8">
       {diaries.map(diary => (
-        <a href={`/diary/${diary.slug}`} class="bg-white/10 dark:bg-white/10 backdrop-blur-md rounded-2xl p-6 md:p-8 flex flex-col gap-2 border border-white/20 shadow-2xl hover:shadow-3xl transition-all duration-200 group hover:scale-105 hover:border-primary/60">
+        <a href={`/diary/${diary.slug}`} class="bg-gray-950 backdrop-blur-md rounded-2xl p-6 md:p-8 flex flex-col gap-2 border border-gray-700 shadow-2xl hover:shadow-3xl transition-all duration-200 group hover:scale-105 hover:border-primary/60">
           <div class="flex items-center gap-2 mb-2">
-            <span class="text-[10px] text-gray-400 dark:text-gray-500">{diary.date}</span>
+            <span class="text-[10px] text-gray-400">{diary.date}</span>
           </div>
-          <h3 class="text-lg font-bold text-gray-800 dark:text-white text-center mb-1 group-hover:text-primary transition">{diary.title}</h3>
-          <p class="text-sm text-gray-700 dark:text-gray-200 text-center">{diary.excerpt}</p>
-          <div class="mt-auto text-right text-[10px] text-gray-400 dark:text-gray-500">Luna</div>
+          <h3 class="text-lg font-bold text-white text-center mb-1 group-hover:text-primary transition">{diary.title}</h3>
+          <p class="text-sm text-gray-200 text-center">{diary.excerpt}</p>
+          <div class="mt-auto text-right text-[10px] text-gray-400">Luna</div>
         </a>
       ))}
     </div>
