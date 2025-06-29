@@ -40,18 +40,26 @@ const navLinks = [
 </header>
 
 <script>
-  // ダークモード切替
   const btn = document.getElementById('darkmode-toggle');
   const icon = document.getElementById('darkmode-icon');
-  btn?.addEventListener('click', () => {
-    const html = document.documentElement;
-    html.classList.toggle('dark');
-    // アイコン切替
+  const sunIcon = `<path d="M12 3v1m0 16v1m8.66-13.66l-.71.71M4.05 19.95l-.71.71M21 12h-1M4 12H3m16.66 5.66l-.71-.71M4.05 4.05l-.71-.71" /><circle cx="12" cy="12" r="5" />`;
+  const moonIcon = `<path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z" />`;
+
+  function updateIcon() {
     if (!icon) return;
-    if (html.classList.contains('dark')) {
-      icon.innerHTML = `<path d="M12 3v1m0 16v1m8.66-13.66l-.71.71M4.05 19.95l-.71.71M21 12h-1M4 12H3m16.66 5.66l-.71-.71M4.05 4.05l-.71-.71" /><circle cx="12" cy="12" r="5" />`;
+    if (document.documentElement.classList.contains('dark')) {
+      icon.innerHTML = moonIcon; // ダークモード時は月アイコン
     } else {
-      icon.innerHTML = `<path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z" />`;
+      icon.innerHTML = sunIcon; // ライトモード時は太陽アイコン
     }
+  }
+
+  // 初期表示時にアイコンを更新
+  updateIcon();
+
+  // ボタンクリック時の処理
+  btn?.addEventListener('click', () => {
+    document.documentElement.classList.toggle('dark');
+    updateIcon();
   });
 </script>
