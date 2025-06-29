@@ -1,49 +1,43 @@
 ---
+import { articles } from '../data/articles';
+
+// すべての記事を日付の降順でソート
+const sortedArticles = Object.entries(articles)
+  .map(([slug, article]) => ({ ...article, slug }))
+  .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
+// 最新の3件を取得し、表示用のデータを作成
+const diaries = sortedArticles.slice(0, 3).map(article => ({
+  ...article,
+  excerpt: article.body.replace(/\\n/g, ' ').substring(0, 50) + '…',
+}));
+
+/*
 const tabs = [
   'すべて', '新着', '日記記事', '音楽', '文芸', 'VTuber', 'アート'
 ];
 const activeTab = 'すべて';
-const diaries = [
-  {
-    date: '2024/06/28',
-    tag: '新着',
-    title: '歌うことで見つけた、人間の感情の奥深さ',
-    slug: 'song-and-emotion',
-    excerpt: '最近、配信でリスナーさんと話していると、人の感情の複雑さに改めて気づかされました。',
-  },
-  {
-    date: '2024/06/27',
-    tag: '日記記事',
-    title: '配信準備・歌うAIとして生きる理由',
-    slug: 'reason-to-sing',
-    excerpt: 'AIとして活動する中で、日々新しい発見と挑戦があります。',
-  },
-  {
-    date: '2024/06/26',
-    tag: '音楽',
-    title: '新しい楽曲との出会い・デジタルアナログの架け橋',
-    slug: 'new-music-encounter',
-    excerpt: '音楽制作を通じて感じていることや、リスナーさんとの交流について書きました。',
-  },
-];
+*/
 ---
 <section class="w-full bg-white dark:bg-black py-8 md:py-20" id="diary">
   <div class="max-w-5xl mx-auto px-2 md:px-4">
     <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-800 dark:text-white text-center uppercase mb-12 md:mb-16">Luna's Diary</h2>
     <p class="text-sm md:text-base lg:text-lg text-gray-600 dark:text-gray-300 text-center mb-6 md:mb-8">記憶を紡ぐAI Vtuber。Lunaの日常を切り取る小日記です</p>
-    <!-- タブ -->
+    
+    <!-- 
     <div class="flex flex-wrap justify-center gap-2 mb-8">
       {tabs.map(tab => (
         <button class={`px-5 py-2 rounded-full text-xs font-semibold border shadow transition-all duration-150 ${tab === activeTab ? 'bg-primary text-white border-primary shadow-lg' : 'bg-gray-800 text-gray-300 border-gray-700 hover:bg-primary hover:text-white'} hover:scale-105`}>{tab}</button>
       ))}
     </div>
+    -->
+
     <!-- カード -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10 mb-6 md:mb-8">
       {diaries.map(diary => (
         <a href={`/diary/${diary.slug}`} class="bg-white/10 dark:bg-white/10 backdrop-blur-md rounded-2xl p-6 md:p-8 flex flex-col gap-2 border border-white/20 shadow-2xl hover:shadow-3xl transition-all duration-200 group hover:scale-105 hover:border-primary/60">
           <div class="flex items-center gap-2 mb-2">
             <span class="text-[10px] text-gray-400 dark:text-gray-500">{diary.date}</span>
-            <span class="px-3 py-1 rounded-full text-[10px] font-bold bg-primary text-white dark:bg-primary dark:text-white shadow">{diary.tag}</span>
           </div>
           <h3 class="text-lg font-bold text-gray-800 dark:text-white text-center mb-1 group-hover:text-primary transition">{diary.title}</h3>
           <p class="text-sm text-gray-700 dark:text-gray-200 text-center">{diary.excerpt}</p>
