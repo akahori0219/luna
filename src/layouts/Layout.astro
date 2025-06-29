@@ -9,7 +9,15 @@ import '@fontsource/noto-sans-jp';
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
     <title>Luna</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/images/common/favicon.ico" />
+    <link rel="icon" type="image/svg+xml" href="/images/common/favicon.svg" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
   </head>
   <body class="bg-dark text-white">
     <slot />
