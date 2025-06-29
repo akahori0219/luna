@@ -5,8 +5,8 @@ import Footer from '../../components/Footer.astro';
 import { articles } from '../../data/articles';
 
 export function getStaticPaths() {
-  return Object.keys(articles).map(slug => ({
-    params: { slug }
+  return Object.keys(articles).map((slug) => ({
+    params: { slug },
   }));
 }
 
@@ -16,23 +16,66 @@ const article = articles[slug as keyof typeof articles];
 if (!article) {
   return new Response(null, { status: 404 });
 }
+
+const articleSlugs = Object.keys(articles);
+const currentIndex = articleSlugs.indexOf(slug as string);
+const prevArticleSlug = currentIndex > 0 ? articleSlugs[currentIndex - 1] : null;
+const nextArticleSlug = currentIndex < articleSlugs.length - 1 ? articleSlugs[currentIndex + 1] : null;
+
+const prevArticle = prevArticleSlug ? articles[prevArticleSlug as keyof typeof articles] : null;
+const nextArticle = nextArticleSlug ? articles[nextArticleSlug as keyof typeof articles] : null;
 ---
 <Layout>
   <SubHeader />
   <main>
-    <article class="max-w-2xl mx-auto py-12 px-4">
-      <div class="mb-6 flex items-center gap-4">
-        <span class="px-3 py-1 rounded-full text-xs font-bold bg-primary text-white shadow">{article.tag}</span>
-        <span class="text-xs text-gray-400">{article.date}</span>
+    <article class="max-w-3xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+      <!-- Article Header -->
+      <header class="mb-8">
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white tracking-tight mb-4">{article.title}</h1>
+        <div class="flex items-center gap-4 text-sm text-gray-400">
+          <time datetime={article.date}>{article.date}</time>
+          <span>&bull;</span>
+          <span class="px-3 py-1 rounded-full text-xs font-bold bg-primary text-white shadow-lg">{article.tag}</span>
+        </div>
+      </header>
+
+      <!-- Featured Image -->
+      <figure class="mb-12">
+        <img src={article.thumbnail} alt={article.title} class="w-full h-auto rounded-lg shadow-2xl object-cover" />
+      </figure>
+
+      <!-- Article Body -->
+      <div class="prose prose-invert max-w-none text-gray-300 text-base md:text-lg leading-relaxed whitespace-pre-line">
+        <p>{article.body}</p>
       </div>
-      <h1 class="text-2xl md:text-3xl font-bold text-white mb-8">{article.title}</h1>
-      <div class="prose prose-invert text-gray-200 text-sm md:text-base whitespace-pre-line">
-        {article.body}
+
+      <!-- Navigation -->
+      <nav class="mt-16 border-t border-gray-700 pt-8 flex justify-between items-center text-sm">
+        <div>
+          {prevArticleSlug && (
+            <a href={`/diary/${prevArticleSlug}`} class="flex items-center gap-2 text-gray-400 hover:text-white transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+              <span>前の記事</span>
+            </a>
+          )}
+        </div>
+        <div>
+          {nextArticleSlug && (
+            <a href={`/diary/${nextArticleSlug}`} class="flex items-center gap-2 text-gray-400 hover:text-white transition-colors">
+              <span>次の記事</span>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+            </a>
+          )}
+        </div>
+      </nav>
+      
+      <!-- Back to list -->
+      <div class="mt-8 text-center">
+        <a href="/diary/" class="text-primary hover:underline text-sm">
+          記事一覧に戻る
+        </a>
       </div>
-      <div class="mt-12">
-        <a href="/diary/" class="text-primary hover:underline">← 記事一覧に戻る</a>
-      </div>
-    </article> 
+    </article>
   </main>
   <Footer />
 </Layout> 
