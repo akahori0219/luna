@@ -1,5 +1,19 @@
 # Changelog
 
+## 2024-08-01
+
+- Lunaのキャラクター設定を`luna-character.md`にまとめました。
+- AstroプロジェクトをCloudflare Pages対応に設定しました。
+  - `@astrojs/cloudflare`アダプターを追加
+  - `astro.config.mjs`に`output: "server"`とCloudflareアダプターを設定
+  - `tsconfig.json`にCloudflare用の型定義を追加
+- TerraformによるCloudflare Pagesの自動デプロイ設定を構築しました。
+  - `terraform/main.tf`: Cloudflare Pagesプロジェクトの定義
+  - `terraform/variables.tf`: 変数の定義
+  - `terraform/terraform.tfvars`: 環境固有の値設定
+  - `terraform/README.md`: セットアップと運用手順
+- `.gitignore`にTerraform関連ファイルを追加しました。
+
 ## 2024-07-27
 
 - feat(header): サイトロゴを更新

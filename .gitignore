@@ -27,3 +27,9 @@ pnpm-debug.log*
 # IDE
 .idea/
 .vscode/
+
+# Terraform
+.terraform/
+.terraform.lock.hcl
+terraform.tfvars
+terraform/terraform.tfvars

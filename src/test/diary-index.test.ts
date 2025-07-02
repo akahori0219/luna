@@ -1,8 +1,8 @@
 // @vitest-environment happy-dom
 import { describe, test, expect } from 'vitest';
-import DiaryIndex from "./index.astro";
-import { renderAstroComponent } from "../../test/helpers";
-import { articles } from '../../data/articles';
+import DiaryIndex from "../pages/diary/index.astro";
+import { renderAstroComponent } from "./helpers";
+import { articles } from '../data/articles';
 
 describe("DiaryIndex", () => {
   test("should render all articles", async () => {

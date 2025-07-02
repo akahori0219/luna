@@ -1,8 +1,12 @@
 {
   "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
-    "jsx": "preserve",
-    "jsxImportSource": "astro"
+    "jsx": "react-jsx",
+    "jsxImportSource": "react",
+    "types": [
+      "@vitest/ui",
+      "@astrojs/cloudflare"
+    ]
   },
   "include": [".astro/types.d.ts", "**/*"],
   "exclude": ["dist"]
