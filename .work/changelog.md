@@ -1,5 +1,12 @@
 # Changelog
 
+## 2025-01-02
+
+- fix(build): Cloudflare Pagesデプロイ時のVitestインポートエラーを修正
+  - `src/pages/diary/index.test.ts`を`src/test/diary-index.test.ts`に移動（Astroがページとして認識する問題を解決）
+  - `astro.config.mjs`にVite設定を追加し、`import.meta.vitest`を無効化
+  - テストファイルがビルドプロセスに含まれることを防止
+
 ## 2024-08-01
 
 - Lunaのキャラクター設定を`luna-character.md`にまとめました。
